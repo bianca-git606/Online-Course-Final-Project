@@ -78,8 +78,6 @@ class Lesson(models.Model):
 
 
 # Enrollment model
-# <HINT> Once a user enrolled a class, an enrollment entry should be created between the user and course
-# And we could use the enrollment to track information such as exam submissions
 class Enrollment(models.Model):
     AUDIT = 'audit'
     HONOR = 'honor'
@@ -105,7 +103,6 @@ class Question(models.Model):
     question_point = models.IntegerField(default=1)
 
     def is_get_grade(self, selected_ids):
-        
         """ this function checks if the student successfully chose all the right answers """
         all_answers = self.choice_set.filter(is_correct=True).count()
         selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
