@@ -105,7 +105,8 @@ class Question(models.Model):
     question_point = models.IntegerField(default=1)
 
     def is_get_grade(self, selected_ids):
-        # Compare the actual number of correct answers to the number of correct answers chosen by the student 
+        
+        """ this function checks if the student successfully chose all the right answers """
         all_answers = self.choice_set.filter(is_correct=True).count()
         selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
         if all_answers == selected_correct:
